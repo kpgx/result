@@ -8,6 +8,7 @@
 index: <input type="text" name="index"><br>
 <input type="submit">
 </form></div>
+<p>Source Code for this page :<a href="https://github.com/kpgx/result" target="_blank">github.com/kpgx/result</a></p>
 <?php
 
 $host=""

@@ -149,8 +149,8 @@ def check(l,n):
             count+=1
     print count
 
-#~ """
-#~ Example
+"""
+Example
 ictlist=textToJson('ICT1001_1006.txt.out',['index','ICT1001','ICT1006'])
 #~ check(ictlist,11021004)
 NEWLIST=updateListNew(ictlist,textToJson('ICT1002_1003_1004_1008.txt.out',['index','ICT1002','ICT1003','ICT1004','ICT1008']))
@@ -187,4 +187,4 @@ NEWLIST=updateListRepeat(NEWLIST,textToJson('ICT1001100310051006.txt.out',['inde
 flist=calcGpaGpvRank(NEWLIST)
 
 writeCsv(flist,'ict')
-#~ """
+"""

@@ -12,7 +12,62 @@ index: <input type="text" name="index"><br>
 <p>Source Code for this page :<a href="https://github.com/kpgx/result" target="_blank">github.com/kpgx/result</a></p>
 <?php
 
-$con=mysqli_connect("lhost","user","pass","dbname");
+$subjects=array(
+"SCS1002"=>"Introduction to Programming",
+"ENH1010"=>"Language Skills",
+"SCS1003"=>"Computer Systems",
+"SCS1004"=>"PC Application Laboratory",
+"SCS1005"=>"Systems Analysis and Design",
+"SCS1009"=>"Introduction to Probability and Statistics",
+"SCS1001"=>"Mathematics for Computing",
+"ENH1020"=>"Life Skills",
+"SCS1006"=>"Introduction to Data structures and Algorithms",
+"SCS1007"=>"Software Engineering",
+"SCS1008"=>"Database Management Systems",
+"SCS2001"=>"Operating Systems",
+"SCS2002"=>"Rapid Application Development",
+"SCS2003"=>"Object Oriented Systems Development",
+"SCS2005"=>"Internet Programming",
+"SCS2006"=>"Analogue and Digital Electronics",
+"SCS2004"=>"Introduction to Programming Languages",
+"SCS2007"=>"System Programming",
+"SCS2008"=>"Numerical Computing",
+"SCS2009"=>"Advanced Data Structures and Algorithms",
+"SCS2010"=>"Statistical Inference for Computing",
+"SCS2011"=>"Analogue and Digital Electronics II",
+"ICT1001"=>"Introduction to Software Development",
+"ICT1002"=>"Systems Analysis and Design",
+"ICT1003"=>"Business Information Systems",
+"ICT1004"=>"PC Application Laboratory",
+"ICT1005"=>"Fundamentals of Management",
+"ICT1006"=>"Mathematics I",
+"ICT1007"=>"Communication Skills",
+"ICT1008"=>"Fundamentals of Economics",
+"ICT1009"=>"Fundamentals of Sociology",
+"ICT1010"=> "Communication Technologies",
+"ICT1011"=>"Database Management Systems",
+"ICT1012"=>"Computer Systems",
+"ICT1013"=>"Guest Lecture Series",
+"ICT1014"=>"Mathematics II",
+"ICT1015"=>"Fundamentals of Accountancy",
+"ICT1016"=>"Fundamentals of Psychology",
+"ICT2001"=>"Software Engineering",
+"ICT2002"=>"Group Project",
+"ICT2003"=>"Internet Application Development",
+"ICT2004"=>"Multimedia Technologies",
+"ICT2005"=>"Business Statistics & Operational Research",
+"ICT2006"=>"Marketing",
+"ICT2007"=>"Industrial Visits",
+"ICT2008"=>"Business Process Re-Engineering",
+"ICT2009"=>"IT Project Management",
+"ICT2010"=>"Information Systems Security and Audit",
+"ICT2011"=>"Digital Fine Arts",
+"ICT2012"=>"Software Development Project",
+"ICT2013"=>"e-Business Technologies and Applications",
+"ICT2014"=>"Special Topics in Computer Science"
+);
+$con=mysqli_connect("host","user","pass","db");
+
 
 // Check connection
 if (mysqli_connect_errno())
@@ -30,7 +85,8 @@ if(isset($_POST['index']) && !empty($_POST['index'])) {
 		echo "Sorry the Index you entered is not in the DB<br>";	
 		}	
 	else{
-		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);		
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		ksort($row);		
   		$GPA=$row['GPA'];
   		$GPAClass=$row['GPAClass'];
 		$rank=$row['rank'];
@@ -42,10 +98,10 @@ if(isset($_POST['index']) && !empty($_POST['index'])) {
 			if ($x=='index' ||$x=='GPA' ||$x=='rank' ||$x=='GPV' ||$x=='credit'||$x=='GPAClass'||$x=='rankClass'||$x=='GPVClass'||$x_value==''){
 				continue;
 				}
-  			echo "Code=" . $x . ", Grade=" . $x_value."<br>";  			
+  			echo "[".$x."] ".$subjects[$x] . " => <b>" . $x_value."</b><br>";  			
   		}
-  		echo "<hr><b>Class GPA = ".$GPAClass."<br>RANK = ".$rankClass."<br>GPV = ".$GPVClass."<br></b>";
-  		echo "gradeCredits={'A+':4.25,'A':4,'A-':3.75,'B+':3.25,'B':3,'B-':2.75,'C+':2.25,'C':2,'C-':1.75,'D+':1.25,'D':1,'D-':0.75,'E':0,'AB':0,'--':0,'NC':0,'MC':0,'rA+':2.25,'rA':2.25,'rA-':2.25,'rB+':2.25,'rB':2.25,'rB-':2.25,'rC+':2.25,'rC':2,'rC-':1.75,'rD+':1.25,'rD':1,'rD-':0.75}<hr>";
+  		echo "<hr><b>Class GPA = ".$GPAClass."<br>RANK = ".$rankClass."<br>GPV = ".$GPVClass."<br>Total credits = ".$tCredit."<br></b>";
+  		echo "gradeCredits={'A+':4.25,'A':4,'A-':3.75,'B+':3.25,'B':3,'B-':2.75,'C+':2.25,'C':2,'C-':1.75,'D+':1.25,'D':1,'D-':0.75,'E':0,'AB':0,'--':0,'NC':0,'MC':0,'rA+':2,'rA':2,'rA-':2,'rB+':2,'rB':2,'rB-':2,'rC+':2,'rC':2,'rC-':1.75,'rD+':1.25,'rD':1,'rD-':0.75}<hr>";
 
   		//echo "<b>GPA = ".$GPA."<br>RANK = ".$rank."<br>GPV = ".$GPV."<br></b>";
   		//echo "gradeCredits={'A+':4,'A':4,'A-':3.75,'B+':3.25,'B':3,'B-':2.75,'C+':2.25,'C':2,'C-':1.75,'D+':1.25,'D':1,'D-':0.75,'E':0,'AB':0,'--':0,'NC':0,'MC':0,'rA+':4.00,'rA':4.00,'rA-':3.75,'rB+':3.25,'rB':3.00,'rB-':2.75,'rC+':2.25,'rC':2,'rC-':1.75,'rD+':1.25,'rD':1,'rD-':0.75}</hr>";
